@@ -136,6 +136,8 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/extern/genieutils/include/genie/Types.h)
 
     set(GUTILS_STATIC True)
     add_subdirectory(extern/genieutils)
+else()
+    message(STATUS "Using installed genieutils")
 endif()
 
 
