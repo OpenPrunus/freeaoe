@@ -61,7 +61,7 @@ void Map::setupBasic() noexcept
     grass.elevation = 0;
     grass.terrainId = 0;
 
-    const size_t tileCount = cols_ * rows_;
+    const size_t tileCount = size_t(cols_) * size_t(rows_);
     tiles_.resize(tileCount, grass);
     m_tileUnits.resize(tileCount);
 
@@ -100,7 +100,7 @@ void Map::setupAllunitsMap() noexcept
     water.elevation = 0;
     water.terrainId = 1;
 
-    const size_t tileCount = cols_ * rows_;
+    const size_t tileCount = size_t(cols_) * size_t(rows_);
     tiles_.resize(tileCount, water);
     m_tileUnits.resize(tileCount);
 
@@ -153,7 +153,7 @@ void Map::create(const genie::ScnMap &mapDescription) noexcept
     rows_ = mapDescription.width;
     cols_ = mapDescription.height;
 
-    const size_t tileCount = cols_ * rows_;
+    const size_t tileCount = size_t(cols_) * size_t(rows_);
     tiles_.resize(tileCount);
     m_tileUnits.resize(tileCount);
 

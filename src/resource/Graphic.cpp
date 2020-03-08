@@ -76,7 +76,7 @@ sf::Image Graphic::slpFrameToImage(const genie::SlpFramePtr &frame, int8_t playe
         return img;
     }
 
-    const size_t byteCount = width * height * 4;
+    const size_t byteCount = size_t(width) * size_t(height) * 4;
 
     switch(imageType) {
     case ImageType::Base:
