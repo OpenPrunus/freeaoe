@@ -34,7 +34,7 @@ bool FileDialog::setup(int width, int height)
 
 
     {
-        m_description = std::make_unique<sf::Text>("Please select the directory containing your Age of Empires 2 installation.", SfmlRenderTarget::defaultFont());
+        m_description = std::make_unique<sf::Text>();//"Please select the directory containing your Age of Empires 2 installation.", SfmlRenderTarget::defaultFont());
         m_description->setCharacterSize(20);
         const int descWidth = m_description->getLocalBounds().width;
         m_description->setPosition(width/2 - descWidth/2, 2);
@@ -133,11 +133,11 @@ std::string FileDialog::getPath()
 
 void FileDialog::setErrorString(const std::string &error) noexcept
 {
-    m_errorText = std::make_unique<sf::Text>("Failed to load game data: " + error, SfmlRenderTarget::defaultFont());
-    m_errorText->setCharacterSize(17);
-    const int textWidth = m_errorText->getLocalBounds().width;
-    m_errorText->setPosition(m_renderWindow->getSize().x/2 - textWidth/2, 25);
-    m_errorText->setFillColor(sf::Color(255, 128, 128));
+    //m_errorText = std::make_unique<sf::Text>("Failed to load game data: " + error, SfmlRenderTarget::defaultFont());
+    //m_errorText->setCharacterSize(17);
+    //const int textWidth = m_errorText->getLocalBounds().width;
+    //m_errorText->setPosition(m_renderWindow->getSize().x/2 - textWidth/2, 25);
+    //m_errorText->setFillColor(sf::Color(255, 128, 128));
 }
 
 Button::Button(const std::string &text, const ScreenRect &rect, const IRenderTargetPtr &renderTarget) :
