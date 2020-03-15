@@ -62,6 +62,6 @@ void NumberLabel::updateText()
         string += '/';
         string += std::to_string(m_maxValue);
     }
-    m_text.setString(string);
+    //m_text.setString(string);
     updatePosition();
 }

@@ -326,7 +326,7 @@ void SfmlRenderTarget::draw(const Drawable::Text::Ptr &text)
     }
 
     if (sfmlText->text->getString() != text->string) {
-        sfmlText->text->setString(text->string);
+        //sfmlText->text->setString(text->string);
         changed = true;
     }
 
@@ -357,7 +357,7 @@ SfmlText::SfmlText()
 
 Size SfmlText::size()
 {
-    text->setString(string);
+    //text->setString(string);
     text->setCharacterSize(pointSize);
 
     const sf::FloatRect bounds = text->getLocalBounds();

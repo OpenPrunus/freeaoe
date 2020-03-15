@@ -81,7 +81,7 @@ void TextButton::render(UiScreen *screen)
     /// Render text
     m_text.setFillColor(screen->m_textFillColor);
     m_text.setOutlineColor(screen->m_textOutlineColor);
-    m_text.setString(text);
+    //m_text.setString(text);
 
     ScreenPos textPosition = rect.center();
     const sf::FloatRect textRect = m_text.getLocalBounds();

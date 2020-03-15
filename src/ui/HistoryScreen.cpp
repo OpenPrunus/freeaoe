@@ -223,7 +223,7 @@ bool HistoryScreen::init(const std::string &filesDir)
     m_uiElements[MainScreenButton].rect = buttonRect;
 
     m_mainScreenText.setFont(SfmlRenderTarget::stylishFont());
-    m_mainScreenText.setString("Main Menu");
+    //m_mainScreenText.setString("Main Menu");
     m_mainScreenText.setCharacterSize(s_buttonTextSize);
     m_mainScreenText.setFillColor(m_textFillColor);
     m_mainScreenText.setOutlineColor(m_textOutlineColor);
@@ -520,11 +520,11 @@ void HistoryScreen::updateVisibleText()
 
         const int index = i + m_textScrollOffset;
         if (index >= m_textLines.size()) {
-            m_visibleText[i].setString("");
+            //m_visibleText[i].setString("");
             continue;
         }
 
-        m_visibleText[i].setString(m_textLines[index].text);
+        //m_visibleText[i].setString(m_textLines[index].text);
 
         if (m_textLines[index].bold) {
             m_visibleText[i].setStyle(m_visibleText[i].getStyle() | sf::Text::Bold);

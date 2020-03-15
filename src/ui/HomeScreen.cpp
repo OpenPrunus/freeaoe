@@ -80,7 +80,7 @@ bool HomeScreen::init()
     m_description.setFont(SfmlRenderTarget::defaultFont());
     if (AssetManager::Inst()->missingData()) {
         m_description.setCharacterSize(19);
-        m_description.setString("WARNING: Terrain graphics are missing,\ncommon reason is using data from Rise of the Rajas.\nIf using Steam, opt into beta and select 'patch43 - Patch 4.3'.\nOtherwise things look crap.");
+        //m_description.setString("WARNING: Terrain graphics are missing,\ncommon reason is using data from Rise of the Rajas.\nIf using Steam, opt into beta and select 'patch43 - Patch 4.3'.\nOtherwise things look crap.");
         m_description.setFillColor(sf::Color::White);
         m_description.setOutlineColor(sf::Color(255, 128, 128));
     } else {
@@ -158,7 +158,7 @@ bool HomeScreen::init()
         const genie::SlpFramePtr &hoverFrame = slpFile->getFrame(frameNum + 2);
 
         if (i != Button::Banner) {
-            b.text.setString(LanguageManager::getString(9500 + i));
+            //b.text.setString(LanguageManager::getString(9500 + i));
         }
         b.description = LanguageManager::getString(31000 + i);
 
@@ -182,7 +182,7 @@ bool HomeScreen::init()
     m_versionText.setFillColor(m_textFillColor);
     m_versionText.setOutlineColor(m_textOutlineColor);
     m_versionText.setOutlineThickness(2);
-    m_versionText.setString("freeaoe");
+    //m_versionText.setString("freeaoe");
     if (isHd) {
         m_versionText.setPosition(ScreenPos(900, 15));
     } else {
@@ -194,7 +194,7 @@ bool HomeScreen::init()
     m_todoText.setFillColor(m_textFillColor);
     m_todoText.setOutlineColor(m_textOutlineColor);
     m_todoText.setOutlineThickness(5);
-    m_todoText.setString("TODO");
+    //m_todoText.setString("TODO");
     if (isHd) {
         m_todoText.setPosition(ScreenPos(875, 160));
     } else {
@@ -300,14 +300,14 @@ bool HomeScreen::handleMouseEvent(const sf::Event &event)
             if (m_buttons[i].rect.contains(mousePos)) {
                 m_hoveredButton = i;
                 if (!missingData) {
-                    m_description.setString(m_buttons[i].description);
+                    //m_description.setString(m_buttons[i].description);
                 }
                 break;
             }
         }
 
         if (m_hoveredButton == -1 && !missingData) {
-            m_description.setString("");
+            //m_description.setString("");
         }
 
         return false;

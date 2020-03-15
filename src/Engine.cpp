@@ -134,9 +134,9 @@ void Engine::start()
 
             if (state->result != GameState::Result::Running) {
                 if (state->result == GameState::Result::Won) {
-                    m_resultOverlay.setString("You won.");
+                    //m_resultOverlay.setString("You won.");
                 } else {
-                    m_resultOverlay.setString("You were defeated."); // TODO: don't remember the exact text
+                    //m_resultOverlay.setString("You were defeated."); // TODO: don't remember the exact text
                 }
                 const ScreenRect labelRect = m_resultOverlay.getLocalBounds();
                 const Size windowSize = renderWindow_->getSize();
@@ -188,7 +188,7 @@ void Engine::start()
             if (renderTime > 0) {
                 fpsSamples++;
                 totalFps += 1000. / renderTime;
-                fps_label_.setString("fps: " + std::to_string(1000/renderTime));
+                //fps_label_.setString("fps: " + std::to_string(1000/renderTime));
             }
 
             // Update the window
@@ -204,9 +204,9 @@ void Engine::start()
 void Engine::addMessage(const std::string &message)
 {
     for (int i=0; i<s_numMessagesLines - 1; i++) {
-        m_visibleText[i].setString(m_visibleText[i+1].getString());
+        //m_visibleText[i].setString(m_visibleText[i+1].getString());
     }
-    m_visibleText[s_numMessagesLines - 1].setString(message);
+    //m_visibleText[s_numMessagesLines - 1].setString(message);
 }
 
 void Engine::showStartScreen()

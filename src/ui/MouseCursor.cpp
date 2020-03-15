@@ -48,7 +48,7 @@ bool MouseCursor::update(const std::shared_ptr<UnitManager> &unitManager)
 
 void MouseCursor::render()
 {
-    m_cursor_pos_text.setString(std::to_string(m_position.x) + ", " + std::to_string(m_position.y));
+    //m_cursor_pos_text.setString(std::to_string(m_position.x) + ", " + std::to_string(m_position.y));
     m_cursor_pos_text.setCharacterSize(11);
     m_cursor_pos_text.setPosition(ScreenPos(m_position));
     m_renderTarget->draw(m_cursor_pos_text);

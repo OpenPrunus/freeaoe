@@ -513,15 +513,15 @@ void UnitInfoPanel::drawConstructionInfo(const std::shared_ptr<Building> &buildi
     pos.y -= 4;
     m_productionUpperText.setPosition(pos);
     if (building->isResearching()) {
-        m_productionUpperText.setString("Researching - " + std::to_string(int(building->productionProgress() * 100)) + "%");
+        //m_productionUpperText.setString("Researching - " + std::to_string(int(building->productionProgress() * 100)) + "%");
     } else {
-        m_productionUpperText.setString("Building - " + std::to_string(int(building->productionProgress() * 100)) + "%");
+        //m_productionUpperText.setString("Building - " + std::to_string(int(building->productionProgress() * 100)) + "%");
     }
     m_renderTarget->draw(m_productionUpperText);
 
     pos.y += m_productionUpperText.getLocalBounds().height;
     m_productionBottomText.setPosition(pos);
-    m_productionBottomText.setString(building->currentProductName());
+    //m_productionBottomText.setString(building->currentProductName());
     m_renderTarget->draw(m_productionBottomText);
 
     // To get the width of the progress bar
