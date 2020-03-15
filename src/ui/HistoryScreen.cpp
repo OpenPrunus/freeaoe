@@ -541,22 +541,22 @@ void HistoryScreen::updateVisibleText()
 
 void HistoryScreen::updateVisibleTitles()
 {
-    for (int i=0; i<s_numListEntries; i++) {
-        const int index = i + m_titleScrollOffset;
+    //for (int i=0; i<s_numListEntries; i++) {
+    //    const int index = i + m_titleScrollOffset;
 
-        if (index == m_currentEntry) {
-            m_visibleTitles[i].text.setOutlineColor(sf::Color(192, 192, 0));
-        } else {
-            m_visibleTitles[i].text.setOutlineColor(sf::Color::Transparent);
-        }
+    //    if (index == m_currentEntry) {
+    //        m_visibleTitles[i].text.setOutlineColor(sf::Color(192, 192, 0));
+    //    } else {
+    //        m_visibleTitles[i].text.setOutlineColor(sf::Color::Transparent);
+    //    }
 
-        if (index >= m_historyEntries.size()) {
-            m_visibleTitles[i].text.setString("");
-            continue;
-        }
-        m_visibleTitles[i].text.setString(m_historyEntries[index].title);
-    }
-    int maxY = m_uiElements[TitlesDownButton].rect.y - m_uiElements[TitlesUpButton].rect.bottom() - m_uiElements[TitlesPositionIndicator].rect.height;
-    m_uiElements[TitlesPositionIndicator].rect.y = m_uiElements[TitlesUpButton].rect.bottom() + maxY * m_titleScrollOffset / int(m_historyEntries.size() - s_numListEntries);
+    //    if (index >= m_historyEntries.size()) {
+    //        m_visibleTitles[i].text.setString("");
+    //        continue;
+    //    }
+    //    m_visibleTitles[i].text.setString(m_historyEntries[index].title);
+    //}
+    //int maxY = m_uiElements[TitlesDownButton].rect.y - m_uiElements[TitlesUpButton].rect.bottom() - m_uiElements[TitlesPositionIndicator].rect.height;
+    //m_uiElements[TitlesPositionIndicator].rect.y = m_uiElements[TitlesUpButton].rect.bottom() + maxY * m_titleScrollOffset / int(m_historyEntries.size() - s_numListEntries);
 }
 

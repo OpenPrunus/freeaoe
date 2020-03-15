@@ -242,179 +242,179 @@ void UnitInfoPanel::draw()
 
 void UnitInfoPanel::drawSingleUnit()
 {
-    Unit::Ptr unit = *m_selectedUnits.begin();
+    //Unit::Ptr unit = *m_selectedUnits.begin();
 
-    Building::Ptr building = Unit::asBuilding(unit);
-    if (building && building->isProducing()) {
-        drawConstructionInfo(building);
-    } else {
-        std::shared_ptr<Player> player = unit->player.lock();
-        m_civilizationName.setString(player->civilization.name());
-        m_playerName.setString(player->name);
+    //Building::Ptr building = Unit::asBuilding(unit);
+    //if (building && building->isProducing()) {
+    //    drawConstructionInfo(building);
+    //} else {
+    //    std::shared_ptr<Player> player = unit->player.lock();
+    //    m_civilizationName.setString(player->civilization.name());
+    //    m_playerName.setString(player->name);
 
-        m_civilizationName.setPosition(rect().center() - ScreenPos(0, m_civilizationName.getLocalBounds().height + m_playerName.getLocalBounds().height + 10));
-        m_playerName.setPosition(rect().center() - ScreenPos(0, m_playerName.getLocalBounds().height));
+    //    m_civilizationName.setPosition(rect().center() - ScreenPos(0, m_civilizationName.getLocalBounds().height + m_playerName.getLocalBounds().height + 10));
+    //    m_playerName.setPosition(rect().center() - ScreenPos(0, m_playerName.getLocalBounds().height));
 
-        m_renderTarget->draw(m_civilizationName);
-        m_renderTarget->draw(m_playerName);
-    }
+    //    m_renderTarget->draw(m_civilizationName);
+    //    m_renderTarget->draw(m_playerName);
+    //}
 
-    ScreenPos pos = rect().topLeft();
-    m_name.setString(LanguageManager::getString(unit->data()->LanguageDLLName));
-    m_name.setPosition(pos);
-    m_renderTarget->draw(m_name);
-    pos.y += m_name.getLocalBounds().height +  m_name.getLocalBounds().top + 5;
+    //ScreenPos pos = rect().topLeft();
+    //m_name.setString(LanguageManager::getString(unit->data()->LanguageDLLName));
+    //m_name.setPosition(pos);
+    //m_renderTarget->draw(m_name);
+    //pos.y += m_name.getLocalBounds().height +  m_name.getLocalBounds().top + 5;
 
-    const int16_t iconId = unit->data()->IconID;
-    if (iconId < 0) {
-        return;
-    }
+    //const int16_t iconId = unit->data()->IconID;
+    //if (iconId < 0) {
+    //    return;
+    //}
 
-    m_renderTarget->draw(m_unitHalo, pos);
-    pos.x += 2;
-    pos.y += 2;
+    //m_renderTarget->draw(m_unitHalo, pos);
+    //pos.x += 2;
+    //pos.y += 2;
 
-    Size size;
-    if (unit->data()->Type == genie::Unit::BuildingType) {
-        if (iconId > m_buildingIcons.size()) {
-            WARN << "out of bounds building icon" << iconId;
-            return;
-        }
+    //Size size;
+    //if (unit->data()->Type == genie::Unit::BuildingType) {
+    //    if (iconId > m_buildingIcons.size()) {
+    //        WARN << "out of bounds building icon" << iconId;
+    //        return;
+    //    }
 
-        m_renderTarget->draw(m_buildingIcons[iconId], pos);
-        size = Size(m_buildingIcons[iconId].getSize());
-    } else {
-        if (iconId > m_unitIcons.size()) {
-            WARN << "out of bounds unit icon" << iconId;
-            return;
-        }
+    //    m_renderTarget->draw(m_buildingIcons[iconId], pos);
+    //    size = Size(m_buildingIcons[iconId].getSize());
+    //} else {
+    //    if (iconId > m_unitIcons.size()) {
+    //        WARN << "out of bounds unit icon" << iconId;
+    //        return;
+    //    }
 
-        m_renderTarget->draw(m_unitIcons[iconId], pos);
-        size = Size(m_unitIcons[iconId].getSize());
-    }
+    //    m_renderTarget->draw(m_unitIcons[iconId], pos);
+    //    size = Size(m_unitIcons[iconId].getSize());
+    //}
 
-    pos.y += size.height + 2;
+    //pos.y += size.height + 2;
 
-    int rightX = pos.x + size.width + 2;
+    //int rightX = pos.x + size.width + 2;
 
-    // Hitpoints indicator
-    m_hpRedRect.setPosition(pos);
-    m_hpGreenRect.setPosition(pos);
-    size.height = 5;
-    m_hpRedRect.setSize(size);
-    m_hpGreenRect.setSize(Size(size.width * unit->healthLeft(), size.height));
-    m_renderTarget->draw(m_hpRedRect);
-    m_renderTarget->draw(m_hpGreenRect);
+    //// Hitpoints indicator
+    //m_hpRedRect.setPosition(pos);
+    //m_hpGreenRect.setPosition(pos);
+    //size.height = 5;
+    //m_hpRedRect.setSize(size);
+    //m_hpGreenRect.setSize(Size(size.width * unit->healthLeft(), size.height));
+    //m_renderTarget->draw(m_hpRedRect);
+    //m_renderTarget->draw(m_hpGreenRect);
 
-    m_hpText.setString(std::to_string(int(unit->hitpointsLeft())) + '/' + std::to_string(unit->data()->HitPoints));
-    m_hpText.setPosition(rightX, pos.y - m_hpText.getLocalBounds().height * 3 / 4);
-    m_renderTarget->draw(m_hpText);
+    //m_hpText.setString(std::to_string(int(unit->hitpointsLeft())) + '/' + std::to_string(unit->data()->HitPoints));
+    //m_hpText.setPosition(rightX, pos.y - m_hpText.getLocalBounds().height * 3 / 4);
+    //m_renderTarget->draw(m_hpText);
 
-    pos.y += size.height + 5;
+    //pos.y += size.height + 5;
 
-    if (unit->isBuilding() && unit->data()->GarrisonCapacity) {
-        Building::Ptr building = Unit::asBuilding(unit);
-        StatItem &item = m_statItems[StatItem::GarrisonCapacity];
-        m_renderTarget->draw(item.icon, ScreenPos(pos));
-        item.text.setPosition(ScreenPos(rightX, pos.y));
-        item.text.setString(std::to_string(building->garrisonedUnits) + '/' + std::to_string(unit->data()->GarrisonCapacity));
-        m_renderTarget->draw(item.text);
-        pos.y += item.icon.getSize().y + 5;
-    }
+    //if (unit->isBuilding() && unit->data()->GarrisonCapacity) {
+    //    Building::Ptr building = Unit::asBuilding(unit);
+    //    StatItem &item = m_statItems[StatItem::GarrisonCapacity];
+    //    m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //    item.text.setPosition(ScreenPos(rightX, pos.y));
+    //    item.text.setString(std::to_string(building->garrisonedUnits) + '/' + std::to_string(unit->data()->GarrisonCapacity));
+    //    m_renderTarget->draw(item.text);
+    //    pos.y += item.icon.getSize().y + 5;
+    //}
 
 
-    int16_t meleeAttack = 0;
-    int16_t pierceAttack = 0;
-    for (const genie::unit::AttackOrArmor &armor : unit->data()->Combat.Attacks) {
-        if (armor.Class == genie::unit::AttackOrArmor::BasePierce) {
-            pierceAttack = armor.Amount;
-        }
-        if (armor.Class == genie::unit::AttackOrArmor::BaseMelee) {
-            meleeAttack = armor.Amount;
-        }
-    }
+    //int16_t meleeAttack = 0;
+    //int16_t pierceAttack = 0;
+    //for (const genie::unit::AttackOrArmor &armor : unit->data()->Combat.Attacks) {
+    //    if (armor.Class == genie::unit::AttackOrArmor::BasePierce) {
+    //        pierceAttack = armor.Amount;
+    //    }
+    //    if (armor.Class == genie::unit::AttackOrArmor::BaseMelee) {
+    //        meleeAttack = armor.Amount;
+    //    }
+    //}
 
-    if (meleeAttack || pierceAttack) {
-        StatItem &item = m_statItems[StatItem::Damage];
-        m_renderTarget->draw(item.icon, ScreenPos(pos));
-        item.text.setPosition(ScreenPos(rightX, pos.y));
-        item.text.setString(std::to_string(std::max(pierceAttack, meleeAttack)));
-        m_renderTarget->draw(item.text);
-        pos.y += item.icon.getSize().y + 5;
-    }
+    //if (meleeAttack || pierceAttack) {
+    //    StatItem &item = m_statItems[StatItem::Damage];
+    //    m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //    item.text.setPosition(ScreenPos(rightX, pos.y));
+    //    item.text.setString(std::to_string(std::max(pierceAttack, meleeAttack)));
+    //    m_renderTarget->draw(item.text);
+    //    pos.y += item.icon.getSize().y + 5;
+    //}
 
-    if (unit->data()->Type < genie::Unit::BuildingType) {
-        int16_t meleeArmor = 0;
-        int16_t pierceArmor = 0;
-        for (const genie::unit::AttackOrArmor &armor : unit->data()->Combat.Armours) {
-            if (armor.Class == genie::unit::AttackOrArmor::BasePierce) {
-                pierceArmor = armor.Amount;
-            }
-            if (armor.Class == genie::unit::AttackOrArmor::BaseMelee) {
-                meleeArmor = armor.Amount;
-            }
-        }
+    //if (unit->data()->Type < genie::Unit::BuildingType) {
+    //    int16_t meleeArmor = 0;
+    //    int16_t pierceArmor = 0;
+    //    for (const genie::unit::AttackOrArmor &armor : unit->data()->Combat.Armours) {
+    //        if (armor.Class == genie::unit::AttackOrArmor::BasePierce) {
+    //            pierceArmor = armor.Amount;
+    //        }
+    //        if (armor.Class == genie::unit::AttackOrArmor::BaseMelee) {
+    //            meleeArmor = armor.Amount;
+    //        }
+    //    }
 
-        if (meleeArmor || pierceArmor) {
-            StatItem &item = m_statItems[StatItem::Armor];
-            m_renderTarget->draw(item.icon, ScreenPos(pos));
-            item.text.setPosition(ScreenPos(rightX, pos.y));
-            item.text.setString(std::to_string(meleeArmor) + '/' + std::to_string(pierceArmor));
-            m_renderTarget->draw(item.text);
+    //    if (meleeArmor || pierceArmor) {
+    //        StatItem &item = m_statItems[StatItem::Armor];
+    //        m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //        item.text.setPosition(ScreenPos(rightX, pos.y));
+    //        item.text.setString(std::to_string(meleeArmor) + '/' + std::to_string(pierceArmor));
+    //        m_renderTarget->draw(item.text);
 
-            pos.y += item.icon.getSize().y + 5;
-        }
-    }
+    //        pos.y += item.icon.getSize().y + 5;
+    //    }
+    //}
 
-    if (unit->data()->Combat.MaxRange > 0) {
-        StatItem &item = m_statItems[StatItem::AttackRange];
-        m_renderTarget->draw(item.icon, ScreenPos(pos));
-        item.text.setPosition(ScreenPos(rightX, pos.y));
-        item.text.setString(std::to_string(int(unit->data()->Combat.MaxRange)));
-        m_renderTarget->draw(item.text);
+    //if (unit->data()->Combat.MaxRange > 0) {
+    //    StatItem &item = m_statItems[StatItem::AttackRange];
+    //    m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //    item.text.setPosition(ScreenPos(rightX, pos.y));
+    //    item.text.setString(std::to_string(int(unit->data()->Combat.MaxRange)));
+    //    m_renderTarget->draw(item.text);
 
-        pos.y += item.icon.getSize().y + 5;
-    }
+    //    pos.y += item.icon.getSize().y + 5;
+    //}
 
-    if (unit->resources[genie::ResourceType::WoodStorage] > 0) {
-        StatItem &item = m_statItems[StatItem::CarryingWoodAmount];
-        m_renderTarget->draw(item.icon, ScreenPos(pos));
-        item.text.setPosition(ScreenPos(rightX, pos.y));
-        item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::WoodStorage] )));
-        m_renderTarget->draw(item.text);
+    //if (unit->resources[genie::ResourceType::WoodStorage] > 0) {
+    //    StatItem &item = m_statItems[StatItem::CarryingWoodAmount];
+    //    m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //    item.text.setPosition(ScreenPos(rightX, pos.y));
+    //    item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::WoodStorage] )));
+    //    m_renderTarget->draw(item.text);
 
-        pos.y += item.icon.getSize().y + 5;
-    }
+    //    pos.y += item.icon.getSize().y + 5;
+    //}
 
-    if (unit->resources[genie::ResourceType::StoneStorage] > 0) {
-        StatItem &item = m_statItems[StatItem::CarryingStoneAmount];
-        m_renderTarget->draw(item.icon, ScreenPos(pos));
-        item.text.setPosition(ScreenPos(rightX, pos.y));
-        item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::StoneStorage])));
-        m_renderTarget->draw(item.text);
+    //if (unit->resources[genie::ResourceType::StoneStorage] > 0) {
+    //    StatItem &item = m_statItems[StatItem::CarryingStoneAmount];
+    //    m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //    item.text.setPosition(ScreenPos(rightX, pos.y));
+    //    item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::StoneStorage])));
+    //    m_renderTarget->draw(item.text);
 
-        pos.y += item.icon.getSize().y + 5;
-    }
+    //    pos.y += item.icon.getSize().y + 5;
+    //}
 
-    if (unit->resources[genie::ResourceType::FoodStorage] > 0) {
-        StatItem &item = m_statItems[StatItem::CarryingFoodAmount];
-        m_renderTarget->draw(item.icon, ScreenPos(pos));
-        item.text.setPosition(ScreenPos(rightX, pos.y));
-        item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::FoodStorage])));
-        m_renderTarget->draw(item.text);
+    //if (unit->resources[genie::ResourceType::FoodStorage] > 0) {
+    //    StatItem &item = m_statItems[StatItem::CarryingFoodAmount];
+    //    m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //    item.text.setPosition(ScreenPos(rightX, pos.y));
+    //    item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::FoodStorage])));
+    //    m_renderTarget->draw(item.text);
 
-        pos.y += item.icon.getSize().y + 5;
-    }
+    //    pos.y += item.icon.getSize().y + 5;
+    //}
 
-    if (unit->resources[genie::ResourceType::GoldStorage] > 0) {
-        StatItem &item = m_statItems[StatItem::CarryingGoldAmount];
-        m_renderTarget->draw(item.icon, ScreenPos(pos));
-        item.text.setPosition(ScreenPos(rightX, pos.y));
-        item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::GoldStorage])));
-        m_renderTarget->draw(item.text);
+    //if (unit->resources[genie::ResourceType::GoldStorage] > 0) {
+    //    StatItem &item = m_statItems[StatItem::CarryingGoldAmount];
+    //    m_renderTarget->draw(item.icon, ScreenPos(pos));
+    //    item.text.setPosition(ScreenPos(rightX, pos.y));
+    //    item.text.setString(std::to_string(int(unit->resources[genie::ResourceType::GoldStorage])));
+    //    m_renderTarget->draw(item.text);
 
-        pos.y += item.icon.getSize().y + 5;
-    }
+    //    pos.y += item.icon.getSize().y + 5;
+    //}
 }
 
 void UnitInfoPanel::drawMultipleUnits()
