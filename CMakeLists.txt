@@ -18,6 +18,7 @@ if (APPLE)
             "#############################################################################################\n"
             )
     endif() # clang
+    add_definitions(-DSHITTY_PLATFORM)
 endif()
 
 project(freeaoe)
