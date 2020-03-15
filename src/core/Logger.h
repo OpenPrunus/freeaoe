@@ -109,6 +109,11 @@ struct LogPrinter
     inline LogPrinter &operator<<(const void *addr) { std::cout << std::hex << addr << std::dec << separator; return *this; }
     inline LogPrinter &operator<<(const std::filesystem::path &path) { std::cout << '\'' << path.string() << '\'' << separator; return *this; }
 
+#ifdef SHITTY_PLATFORM
+    // Because macos is shortbus special
+    inline LogPrinter &operator<<(const unsigned long num) { std::cout << num << separator; return *this; }
+#endif
+
     template<typename T>
     inline LogPrinter &operator<<(const std::vector<T> &vec) {
         std::cout << '(';
